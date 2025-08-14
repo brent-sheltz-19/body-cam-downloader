@@ -18,7 +18,6 @@
 #include "camera.h"
 #define multithread false
 using namespace std;
-
 using namespace filesystem;
 std::vector<std::string> split(const std::string& str, const std::string& delimiters) {
     std::vector<std::string> tokens;
@@ -140,15 +139,8 @@ static void moveandsort( const std::string& from, const std::string& to)
 {
     // y m d
     //last 2 digits of year on vid
-
-   
     // Convert to a more human-readable format (e.g., system_clock::time_point)
     for (const auto& entry : std::filesystem::recursive_directory_iterator(from)) { 
-        
-        
-        
-        
-        
         auto last_write_time = std::filesystem::last_write_time(entry);
         string sctp = format("{}", last_write_time);
         sctp = sctp.substr(0, 10);
@@ -184,7 +176,7 @@ int main()
     vector<camerainfo> types = { boblov_cameras };
     vector<string> valid_drives;
     std::set<std::string> a = get_removable_drives();
-    std::cout << "Hello World!\n";
+    
     for (std::string removeabledrive : a) // for each removable drive
     {
         
@@ -197,7 +189,6 @@ int main()
            {
                movelogs(removeabledrive + log_path, bodycam_sorted_vids);
                moveandsort(removeabledrive+boblov_cam_vid_path, bodycam_sorted_vids);
-
            }
         }
     }
